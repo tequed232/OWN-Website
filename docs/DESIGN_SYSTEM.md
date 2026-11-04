@@ -123,3 +123,12 @@ Avoid layout-triggering animation where possible. Every animation must be interr
 - [ ] Light and dark themes both pass contrast review.
 - [ ] Reduced-motion mode remains fully usable.
 - [ ] Focus, touch, and keyboard states are designed—not incidental.
+
+## 11. Reference material
+
+- Swiss Style history and principles, Swiss Confederation / About Switzerland: https://www.aboutswitzerland.eda.admin.ch/en/swiss-style-forever-the-story-of-a-graphic-design-tradition
+- Web Interface Guidelines, Vercel: https://vercel.com/design/guidelines
+- W3C Web Platform Design Principles: https://www.w3.org/TR/design-principles/
+- Swiss Confederation Web Guidelines — Basic Grid: https://swiss.github.io/styleguide/en/docs/03-basic-grid.html
+
+These references inform the design principles; the OWN-Website visual system, Arcana artwork, and component designs must remain original.
