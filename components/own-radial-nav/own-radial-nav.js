@@ -152,7 +152,8 @@ class OwnRadialNav extends HTMLElement {
       path.setAttribute("d", this._shape(i, time - this._started).d);
     });
     this.shadowRoot.querySelectorAll(".endpoint").forEach((link) => {
-      const point = this._shape(Number(link.dataset.index), time - this._started);
+      const rayIndex = Math.round(Number(link.dataset.index) * 10 / this._items.length);
+      const point = this._shape(rayIndex, time - this._started);
       link.setAttribute("transform", "translate(" + point.x + " " + point.y + ")");
     });
     this._raf = requestAnimationFrame(this._tick);
@@ -161,7 +162,8 @@ class OwnRadialNav extends HTMLElement {
   _drawStill() {
     this.shadowRoot.querySelectorAll(".rays path").forEach((path, i) => path.setAttribute("d", this._shape(i, 0).d));
     this.shadowRoot.querySelectorAll(".endpoint").forEach((link) => {
-      const point = this._shape(Number(link.dataset.index), 0);
+      const rayIndex = Math.round(Number(link.dataset.index) * 10 / this._items.length);
+      const point = this._shape(rayIndex, 0);
       link.setAttribute("transform", "translate(" + point.x + " " + point.y + ")");
     });
   }
