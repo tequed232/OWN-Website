@@ -52,6 +52,7 @@ class OwnRadialNav extends HTMLElement {
 
   _validHref(href) {
     return typeof href === "string" &&
+      !href.startsWith("//") &&
       /^(https?:\/\/|\/|#|\.\.?\/|mailto:)/i.test(href) &&
       !/^javascript:/i.test(href);
   }
