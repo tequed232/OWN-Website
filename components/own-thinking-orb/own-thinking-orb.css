@@ -1,0 +1,16 @@
+/* OWN Thinking Orb — restrained geometric motion, no glow gradients. */
+own-thinking-orb{--orb-size:clamp(7rem,18vw,12rem);display:inline-grid;place-items:center;width:var(--orb-size);aspect-ratio:1;position:relative;isolation:isolate;color:var(--orb-ink,#171717)}
+own-thinking-orb .orb-core,own-thinking-orb .orb-ring{position:absolute;inset:0;border:1px solid currentColor;border-radius:50%;pointer-events:none}
+own-thinking-orb .orb-core{inset:18%;background:var(--orb-fill,#E6332A);border:0;transform:scale(1);animation:own-orb-breathe 4s ease-in-out infinite}
+own-thinking-orb .orb-ring{inset:7%;opacity:.24;transform:scale(.96);animation:own-orb-ring 4s ease-in-out infinite}
+own-thinking-orb .orb-ring--outer{inset:0;opacity:.12;animation-delay:-1.2s}
+own-thinking-orb .orb-label{position:absolute;top:calc(100% + 1rem);left:50%;transform:translateX(-50%);font:600 .68rem/1.2 var(--font-mono,ui-monospace,monospace);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;color:var(--orb-muted,#777)}
+own-thinking-orb[state="thinking"] .orb-core{animation-duration:2.4s}
+own-thinking-orb[state="thinking"] .orb-ring{animation-duration:2.4s;opacity:.34}
+own-thinking-orb[state="thinking"] .orb-ring--outer{animation-delay:-.7s}
+own-thinking-orb[state="active"] .orb-core{animation-duration:1.8s}
+own-thinking-orb[state="active"] .orb-ring{animation-duration:1.8s;opacity:.42}
+own-thinking-orb[state="active"] .orb-ring--outer{animation-delay:-.55s}
+@keyframes own-orb-breathe{0%,100%{transform:scale(.94)}50%{transform:scale(1.06)}}
+@keyframes own-orb-ring{0%,100%{transform:scale(.94);opacity:.12}50%{transform:scale(1.04);opacity:.3}}
+@media(prefers-reduced-motion:reduce){own-thinking-orb .orb-core,own-thinking-orb .orb-ring{animation:none}own-thinking-orb .orb-core{transform:none}own-thinking-orb .orb-ring{transform:none}}
