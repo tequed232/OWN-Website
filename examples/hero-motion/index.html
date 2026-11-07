@@ -12,21 +12,23 @@
 .eyebrow{font:600 .72rem/1.2 ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 h1{font-size:clamp(3.3rem,8.8vw,8rem);line-height:.91;letter-spacing:-.075em;font-weight:650;max-width:10ch;margin:1.5rem 0}
 own-hero-rotator{display:block;min-height:2.1em;position:relative}
-[data-phrase]{display:block;grid-area:1/1;visibility:hidden;opacity:0;transform:translateY(.16em);transition:opacity 450ms ease,transform 450ms ease,visibility 450ms}
-[data-phrase].is-current{visibility:visible;opacity:1;transform:translateY(0)}
+.own-hero-rotator__text{white-space:normal}
+.own-hero-rotator__caret{display:inline-block;height:.78em;margin-left:.09em;border-left:.075em solid var(--red);vertical-align:-.02em;animation:own-caret-blink 1s steps(2,start) infinite}
+.own-hero-rotator__caret[hidden]{display:none}
+@keyframes own-caret-blink{to{visibility:hidden}}
 p{max-width:34rem;font-size:1.05rem;line-height:1.65;color:#555}
 .orb-panel{min-height:22rem;display:grid;place-items:center;border-left:1px solid var(--line)}
-footer{position:fixed;bottom:1.5rem;left:clamp(1.5rem,5vw,5rem);font: .7rem ui-monospace,monospace;color:var(--muted)}
+footer{position:fixed;bottom:1.5rem;left:clamp(1.5rem,5vw,5rem);font:.7rem ui-monospace,monospace;color:var(--muted)}
 @media(max-width:700px){main{grid-template-columns:1fr;align-content:center;gap:4rem}.orb-panel{min-height:13rem;border-left:0;border-top:1px solid var(--line);padding-top:3rem;justify-items:start}own-thinking-orb{--orb-size:8rem}footer{position:static;padding:0 1.5rem 1.5rem}}
-@media(prefers-reduced-motion:reduce){[data-phrase]{transition:none}}
+@media(prefers-reduced-motion:reduce){.own-hero-rotator__caret{animation:none}}
 </style>
 </head>
 <body>
 <main>
 <section aria-labelledby="hero-title">
 <div class="eyebrow">Independent work · 2026</div>
-<h1 id="hero-title"><own-hero-rotator interval="5200">
-<span data-phrase class="is-current">Build with intent.</span>
+<h1 id="hero-title"><own-hero-rotator interval="1700">
+<span data-phrase>Build with intent.</span>
 <span data-phrase>Ideas into reality.</span>
 <span data-phrase>Make technology personal.</span>
 <span data-phrase>Less noise. More creation.</span>
@@ -37,5 +39,5 @@ footer{position:fixed;bottom:1.5rem;left:clamp(1.5rem,5vw,5rem);font: .7rem ui-m
 <own-thinking-orb state="idle"></own-thinking-orb>
 </aside>
 </main>
-<footer>OWN / HERO MOTION STUDY — INTERACTION PROTOTYPE</footer>
+<footer>OWN / HERO MOTION STUDY — STREAMING TEXT PROTOTYPE</footer>
 </body></html>
