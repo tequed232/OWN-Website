@@ -12,8 +12,8 @@
 .eyebrow{font:600 .72rem/1.2 ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 h1{font-size:clamp(3.3rem,8.8vw,8rem);line-height:.91;letter-spacing:-.075em;font-weight:650;max-width:10ch;margin:1.5rem 0}
 own-hero-rotator{display:block;min-height:2.1em;position:relative}
-[data-phrase]{display:none;opacity:0;transform:translateY(.16em);transition:opacity 450ms ease,transform 450ms ease}
-[data-phrase].is-current{display:block;opacity:1;transform:translateY(0)}
+[data-phrase]{display:block;grid-area:1/1;visibility:hidden;opacity:0;transform:translateY(.16em);transition:opacity 450ms ease,transform 450ms ease,visibility 450ms}
+[data-phrase].is-current{visibility:visible;opacity:1;transform:translateY(0)}
 p{max-width:34rem;font-size:1.05rem;line-height:1.65;color:#555}
 .orb-panel{min-height:22rem;display:grid;place-items:center;border-left:1px solid var(--line)}
 footer{position:fixed;bottom:1.5rem;left:clamp(1.5rem,5vw,5rem);font: .7rem ui-monospace,monospace;color:var(--muted)}
