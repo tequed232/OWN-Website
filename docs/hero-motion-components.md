@@ -1,36 +1,41 @@
 # OWN Hero Motion Components
 
-Portable, dependency-free custom elements for the OWN-Website hero. This repository currently has no verified app scaffold or package manifest, so these assets are intentionally framework-neutral. Mount them into the eventual application rather than assuming a Next.js route or adding runtime dependencies.
+Portable, dependency-free custom elements for the OWN-Website hero. The repository currently has no verified production app entry point or package manifest, so these assets remain framework-neutral.
 
 ## Components
 
 - `<own-thinking-orb state="idle|thinking|active">`: restrained circular presence indicator. Load `components/own-thinking-orb/own-thinking-orb.css` and `own-thinking-orb.js`.
-- `<own-hero-rotator interval="5200">`: rotates child `[data-phrase]` elements. Load `components/own-hero-rotator/own-hero-rotator.js`.
+- `<own-hero-rotator interval="1700">`: ChatGPT-style simulated streaming headline. Load `components/own-hero-rotator/own-hero-rotator.js`. Each child `[data-phrase]` is a phrase in the rotation.
 
-## Motion and accessibility
+## Streaming text behavior
 
-- Orb states: idle 4s, thinking 2.4s, active 1.8s. Motion uses transform and opacity only.
-- Hero copy rotates every 5.2s by default; minimum supported interval is 3s.
-- Rotation pauses while hovered, keyboard-focused, or the document is hidden.
-- With `prefers-reduced-motion: reduce`, the first headline remains visible and autoplay is disabled.
-- Phrase nodes expose inactive items with `aria-hidden=true`; no live-region announcements are emitted on a timer.
-- No analytics, storage, external assets, or dependencies are used.
+- Text is emitted in uneven short chunks (including partial words), not swapped as whole phrases.
+- Character/token pacing varies slightly; punctuation introduces a longer pause.
+- Once a phrase completes, it holds, deletes in short bursts, pauses briefly, then streams the next phrase.
+- `interval` controls the completed-phrase hold duration in milliseconds (default 1700; minimum 800). It is not a fixed rotation interval.
+- A blinking caret marks the current insertion point.
+- Uses `textContent` for safe rendering; no HTML from phrase strings is interpreted.
+- The component exposes the current full phrase through an accessible label and does not use a live region, avoiding repetitive screen-reader announcements.
+
+## Accessibility and lifecycle
+
+- With `prefers-reduced-motion: reduce`, the first phrase is shown statically and autoplay/caret animation are disabled.
+- Streaming pauses while the document is hidden and restarts cleanly when visible.
+- Timers and event listeners are cleaned up when the element is disconnected.
+- No analytics, storage, external assets, or runtime dependencies are used.
 
 ## Integration
 
-Include the stylesheet and scripts from the application entry point (or import the CSS and JS from the page bundle). Example:
-
 ```html
-<own-hero-rotator interval="5200">
-  <span data-phrase class="is-current">Build with intent.</span>
+<own-hero-rotator interval="1700">
+  <span data-phrase>Build with intent.</span>
   <span data-phrase>Ideas into reality.</span>
   <span data-phrase>Make technology personal.</span>
 </own-hero-rotator>
-<own-thinking-orb state="idle"></own-thinking-orb>
 ```
 
-Set orb state from real application state only; do not imply that the site is processing when it is not. The component API also exposes `element.setState("thinking")` after the custom element has upgraded.
+Set orb state from real application state only; do not imply that the site is processing when it is not. The orb component exposes `element.setState("thinking")` after custom-element registration.
 
 ## Validation status
 
-Source review only in this PR. No app build, typecheck, automated browser test, or deployment check is claimed because no app scaffold/package manifest is present on the inspected default branch. The standalone HTML demo can be opened locally for visual review. Verify target viewport widths (1440, 1280, 768, 390, 360), keyboard focus, and reduced-motion behavior when integrating into the real app.
+Source review only. No app build, typecheck, automated browser test, or deployment check is claimed because no production app scaffold/package manifest is present on the inspected default branch. Open `examples/hero-motion/index.html` locally for a visual prototype. Verify target widths (1440, 1280, 768, 390, 360), keyboard/focus behavior, and reduced-motion behavior when integrating.
